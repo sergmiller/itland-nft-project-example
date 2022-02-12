@@ -37,11 +37,15 @@ function getRandomItem() {
   return 4; // 7,8,9 -> 4 - 30%
 }
 
-export async function mintNewToken(web3) {
+export async function mintNewToken(collection, web3) {
     console.log("is web3 " + web3);
     const [creator] = await getWeb3Accounts(web3);
 	console.log("creator is", creator);
-    let nftCollecton = new web3.eth.Contract(ItlandNFT.abi, config.collection);
+	if (!collection) {
+	    collection = config.collection
+	}
+	console.log("collection is", collection);
+    let nftCollecton = new web3.eth.Contract(ItlandNFT.abi, collection);
     let idx = getRandomItem()
     let tokenURI = config.ipfs[idx]
     console.log("tokenURI: " + tokenURI)
@@ -57,7 +61,7 @@ export async function mintNewToken(web3) {
             gasPrice: '5000000000'
         });
 //         console.log("TX: ", tx);
-        return "https://rinkeby.rarible.com/collection/" + config.collection + "/items";
+        return "https://rinkeby.rarible.com/collection/" + collection + "/items";
     }catch (e) {
         console.log(e.message)
         return "ERROR";

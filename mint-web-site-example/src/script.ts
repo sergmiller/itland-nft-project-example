@@ -9,6 +9,9 @@ export const web3 = new Web3(provider)
 // @ts-ignore
 const linkInput: HTMLInputElement = document.getElementById("link")
 
+// @ts-ignore
+const collectionInput: HTMLInputElement = document.getElementById("collection")
+
 document.getElementById("connect")?.addEventListener("click", (e) => {
 	e.preventDefault()
 	provider.enable()
@@ -16,7 +19,7 @@ document.getElementById("connect")?.addEventListener("click", (e) => {
 
 document.getElementById("mint")?.addEventListener("click", (e) => {
 	e.preventDefault()
-	mintNewToken(web3)
+	mintNewToken(collectionInput.value, web3)
 		.then(x => {
 			console.log("SENT", x)
 			// @ts-ignore
