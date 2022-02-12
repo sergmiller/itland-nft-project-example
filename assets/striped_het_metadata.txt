@@ -1,0 +1,12 @@
+{
+    "attributes" : [ {
+      "trait_type" : "Coat Color",
+      "value" : "Striped"
+    }, {
+      "trait_type" : "Eye color",
+      "value" : "Heterochromia"
+    } ],
+    "description" : "The Queen",
+    "image" : "https://gateway.pinata.cloud/ipfs/QmeGC4kSAGX3JVXHu349MpJegg7qg5MiMHkG55xSodYKk2",
+    "name" : "Monica"
+}

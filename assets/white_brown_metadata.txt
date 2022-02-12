@@ -1,0 +1,12 @@
+{
+    "attributes" : [ {
+      "trait_type" : "Coat Color",
+      "value" : "White"
+    }, {
+      "trait_type" : "Eye color",
+      "value" : "Brown"
+    } ],
+    "description" : "Hermitage guard",
+    "image" : "https://gateway.pinata.cloud/ipfs/QmWRhk2KFxAgWT5r68mzi3C5GU18e9qF3NJvs6wfTqrSFg",
+    "name" : "Murzik"
+}

@@ -1,6 +1,14 @@
 # Compiled class file
 *.class
 
+*.DS_Store
+*.idea/*
+*yarn.lock*
+*package-lock.json*
+*node_modules*
+*/dist/*
+*/.cache/*
+
 # Log file
 *.log
 
