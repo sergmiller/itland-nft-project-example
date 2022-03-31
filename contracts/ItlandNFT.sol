@@ -10,8 +10,6 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 contract ItlandNFT is ERC721URIStorage, Ownable {
     using Counters for Counters.Counter;
 
-    uint256 public constant maxSupply = 10;
-
     Counters.Counter private _tokenCount;
 
     constructor(string memory _title, string memory _moto)
@@ -24,7 +22,6 @@ contract ItlandNFT is ERC721URIStorage, Ownable {
 
     function mint(string memory _tokenURI) public payable onlyOwner {
         uint256 newTokenId = _tokenCount.current();
-        require(newTokenId < maxSupply);
          _tokenCount.increment();
         _safeMint(msg.sender, newTokenId);
         _setTokenURI(newTokenId, _tokenURI);
