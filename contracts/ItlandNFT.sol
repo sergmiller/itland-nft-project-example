@@ -12,8 +12,8 @@ contract ItlandNFT is ERC721URIStorage, Ownable {
 
     Counters.Counter private _tokenCount;
 
-    constructor(string memory _title, string memory _moto)
-        ERC721(_title, _moto)
+    constructor(string memory name_, string memory symbol_)
+        ERC721(name_, symbol_)
     {}
 
     function widthdraw(address _address, uint256 amount) public payable onlyOwner {
