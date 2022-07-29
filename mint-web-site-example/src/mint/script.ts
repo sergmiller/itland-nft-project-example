@@ -1,18 +1,9 @@
 import ItlandNFT from './artifacts/ItlandNFT.json'
 
 let config = {
-	rinkebyRpc: "https://rinkeby.infura.io/v3/84653a332a3f4e70b1a46aaea97f0435",
- 	rinkeby: "rinkeby",
- 	ipfs: [
- 	'https://gateway.pinata.cloud/ipfs/QmNmX9fb1JzkXcShX4uK2WjZjnGTNf3MhjD9XMgdCma4KC',
- 	'https://gateway.pinata.cloud/ipfs/QmWSQwZwR5PwphSzRKMt6FKRrW1pwyLcSxtVCz8sAcV5fM',
- 	'https://gateway.pinata.cloud/ipfs/QmWxKjcdBBWtqx7ojMLf7YB69DcoTgBmHEFWcw6fgAHtYe',
- 	'https://gateway.pinata.cloud/ipfs/QmWzZwiRitqQNSKCB2ybE3sk8enPiTS23tuYe9cU1Q7WcT',
- 	'https://gateway.pinata.cloud/ipfs/QmWCtsCGXU8sTdcv3u1emZfQDNFE63PWh8M4zbrreSBXAT',
- 	],
- 	chainId: 4,
- 	owner: "0x8fd049EE1463A336D15b06Ae7c90DA141171C8a5",
- 	collection: "0xe031d6e83992b2fe47d602a523f3a01829539212"
+	polygonRpc: "https://polygon.infura.io/v3/84653a332a3f4e70b1a46aaea97f0435",
+ 	chainId: 13,
+ 	collection: "0x167eb338a708f665b7a73de79ed870a7885b9669"
 }
 
 async function getWeb3Accounts(web3) {
@@ -37,31 +28,25 @@ function getRandomItem() {
   return 4; // 7,8,9 -> 4 - 30%
 }
 
-export async function mintNewToken(collection, web3) {
+export async function mintNewToken(ipfs, web3) {
     console.log("is web3 " + web3);
     const [creator] = await getWeb3Accounts(web3);
 	console.log("creator is", creator);
-	if (!collection) {
-	    collection = config.collection
-	}
+// 	if (!collection) {
+	let collection = config.collection
+// 	}
 	console.log("collection is", collection);
     let nftCollecton = new web3.eth.Contract(ItlandNFT.abi, collection);
-    let idx = getRandomItem()
-    let tokenURI = config.ipfs[idx]
+    let tokenURI = ipfs
     console.log("tokenURI: " + tokenURI)
     let value = '0'
-    if (creator != config.owner) {
-        value = '10000000000000000' // 0.01 eth
-    }
     try {
         let tx = nftCollecton.methods.mint(tokenURI).send({
-            value: value,
-            from: creator,
-            gas: 1500000,
-            gasPrice: '5000000000'
+            value: '0',
+            from: creator
         });
 //         console.log("TX: ", tx);
-        return "https://rinkeby.rarible.com/collection/" + collection + "/items";
+        return "https://rarible.com/collection/polygon/" + collection + "/items";
     }catch (e) {
         console.log(e.message)
         return "ERROR";

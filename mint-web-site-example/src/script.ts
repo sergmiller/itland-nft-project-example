@@ -10,7 +10,7 @@ export const web3 = new Web3(provider)
 const linkInput: HTMLInputElement = document.getElementById("link")
 
 // @ts-ignore
-const collectionInput: HTMLInputElement = document.getElementById("collection")
+const collectionInput: HTMLInputElement = document.getElementById("ipfs")
 
 document.getElementById("connect")?.addEventListener("click", (e) => {
 	e.preventDefault()
@@ -19,11 +19,14 @@ document.getElementById("connect")?.addEventListener("click", (e) => {
 
 document.getElementById("mint")?.addEventListener("click", (e) => {
 	e.preventDefault()
-	mintNewToken(collectionInput.value, web3)
-		.then(x => {
-			console.log("SENT", x)
-			// @ts-ignore
-			linkInput.value = x
-		})
-		.catch(err => console.error("ERROR", err))
+	var fields = collectionInput.value.split(',');
+	for (const f of fields) {
+        mintNewToken(f, web3)
+            .then(x => {
+                console.log("SENT", x)
+                // @ts-ignore
+                linkInput.value = x
+            })
+            .catch(err => console.error("ERROR", err))
+    }
 })
